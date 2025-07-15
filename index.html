@@ -152,44 +152,15 @@
 <section id="contact">
   <h2>Contact Me</h2>
   <p>Fill out this form and I’ll get back to you soon!</p>
-  <form id="contact-form">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-    <p id="response-msg" style="margin-top: 10px;"></p>
-  </form>
+  <form id="contact-form" action="https://formspree.io/f/xeozqakw" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
 </section>
- <!-- trigger redeploy -->
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact-form");
-    const responseMsg = document.getElementById("response-msg");
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
 
-      const name = form.querySelector("input[name='name']").value;
-      const email = form.querySelector("input[name='email']").value;
-      const message = form.querySelector("textarea[name='message']").value;
-
-      fetch("https://script.google.com/macros/s/AKfycbz4GUs9d6U5VFZfIjrE46rON5phv1eWkhoU5Q_Q55wqY6t1iJZVapug8WvLAnKaozKB/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          responseMsg.innerText = "Message sent successfully!";
-          form.reset();
-        })
-        .catch((err) => {
-          responseMsg.innerText = "Error! Try again later.";
-          console.error("Error!", err.message);
-        });
-    });
-  });
-</script>
 </body>
 </html>
