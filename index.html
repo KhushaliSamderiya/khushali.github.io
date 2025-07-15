@@ -163,41 +163,33 @@
  <!-- trigger redeploy -->
 
 <script>
-  document.querySelector("form").addEventListener("submit", function (e) {
-    e.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const responseMsg = document.getElementById("response-msg");
 
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const message = document.querySelector('input[name="message"]').value;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbz4GUs9d6U5VFZfIjrE46rON5phv1eWkhoU5Q_Q55wqY6t1iJZVapug8WvLAnKaozKB/exec", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message
+      const name = form.querySelector("input[name='name']").value;
+      const email = form.querySelector("input[name='email']").value;
+      const message = form.querySelector("textarea[name='message']").value;
+
+      fetch("https://script.google.com/macros/s/AKfycbz4GUs9d6U5VFZfIjrE46rON5phv1eWkhoU5Q_Q55wqY6t1iJZVapug8WvLAnKaozKB/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       })
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Success!", data);
-        alert("Form submitted successfully!");
-        document.querySelector("form").reset();
-      })
-      .catch((err) => {
-        console.error("Error!", err.message);
-        alert("There was a problem submitting the form.");
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          responseMsg.innerText = "Message sent successfully!";
+          form.reset();
+        })
+        .catch((err) => {
+          responseMsg.innerText = "Error! Try again later.";
+          console.error("Error!", err.message);
+        });
+    });
   });
 </script>
-
-  
 </body>
 </html>
