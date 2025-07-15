@@ -161,37 +161,42 @@
   </form>
 </section>
  <!-- trigger redeploy -->
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbz4GUs9d6U5VFZfIjrE46rON5phv1eWkhoU5Q_Q55wqY6t1iJZVapug8WvLAnKaozKB/exec';
-  const form = document.getElementById('contact-form');
-  const responseMsg = document.getElementById('response-msg');
 
-  form.addEventListener('submit', e => {
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value
-    };
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const message = document.querySelector('input[name="message"]').value;
 
-    fetch(scriptURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+    fetch("https://script.google.com/macros/s/AKfycbz4GUs9d6U5VFZfIjrE46rON5phv1eWkhoU5Q_Q55wqY6t1iJZVapug8WvLAnKaozKB/exec", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: message
+      })
     })
-    .then(response => {
-      responseMsg.innerText = "Message sent successfully!";
-      form.reset();
-    })
-    .catch(error => {
-      responseMsg.innerText = "Oops! Something went wrong.";
-      console.error('Error!', error.message);
-    });
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Success!", data);
+        alert("Form submitted successfully!");
+        document.querySelector("form").reset();
+      })
+      .catch((err) => {
+        console.error("Error!", err.message);
+        alert("There was a problem submitting the form.");
+      });
   });
 </script>
-
-
 
   
 </body>
