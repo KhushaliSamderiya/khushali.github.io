@@ -16,7 +16,7 @@ Welcome to my personal website — a curated space showcasing my work as a Softw
 - `assets/` – Resume PDF and background images
 
 ## 📬 Contact
-Let’s connect! Reach me via the contact form on the website or email me at [ksamderi@uccs.edu](mailto:ksamderi@uccs.edu)
+Let’s connect! Reach me via the contact form on the website or email me at [khushalisam@gmail.com](mailto:khushalisam@gmail.com)
 
 ---
 
