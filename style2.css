@@ -13,7 +13,7 @@ body {
 .container {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 /* ===== Navbar ===== */
@@ -66,7 +66,7 @@ body {
 /* ===== Hero Section ===== */
 .hero {
   height: 100vh;
-  background-color: #4A4E69;
+  /* background-color: #4A4E69; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,8 +79,8 @@ body {
 }
 
 .hero h1 {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 64px;
+  font-weight: 600;
   color: #F2E9E4;
 }
 
@@ -91,7 +91,7 @@ body {
 }
 
 .description {
-  font-size: 16px;
+  font-size: 20px;
   color: #C9ADA7;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -242,21 +242,26 @@ body {
 }
 
 
-.resume-download {
-  margin-top: 40px;
+ .resume-download {
+  margin-top: 30px;
+  text-align: center;
 }
 
 .resume-download .btn {
   background-color: #C9ADA7;
   padding: 12px 24px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 50px;
   color: #22223B;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
 }
 
 .resume-download .btn:hover {
   background-color: #9A8C98;
 }
+
 
 @media (max-width: 768px) {
   .resume-container {
